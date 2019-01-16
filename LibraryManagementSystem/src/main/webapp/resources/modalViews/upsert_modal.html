@@ -1,0 +1,55 @@
+<div class="modal-header">
+	<h3>{{modalTitle}} Book</h3>
+</div>
+<form name="bookForm">
+	<div class="modal-body">
+		<div class="tablecontainer">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Book Name</th>
+						<th>Author</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="form-group">
+								<input class="form-control" ng-model="bookModal.bookName"
+									autofocus="autofocus" required />
+								<p ng-show="bookForm.bookModal.bookName.$invalid"
+									class="help-block">Need Book Name</p>
+							</div>
+						</td>
+						<td><div class="form-group">
+								<input class="form-control" ng-model="bookModal.author" required />
+								<p ng-show="bookForm.bookModal.author.$error.maxlength"
+									class="help-block">Need Author</p>
+							</div></td>
+					</tr>
+					<tr ng-show="showCaptcha">
+						<td colspan="2">
+							<div class="form-group">
+								<div vc-recaptcha
+									key="'6Ldfc4kUAAAAALzczzy_G7_9BZb74Ye9wUKBqzWE'"></div>
+							</div>
+						</td>
+					</tr>
+					<tr ng-show="spinnerModalShow" align="center">
+						<td colspan="2"><img
+							src="https://loading.io/spinners/book/index.flip-book-loader.svg"
+							class="ajax-loader" /></td>
+					</tr>
+					<tr ng-show="errorShow" align="center">
+						<th>Error!</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal-footer" ng-hide="spinnerModalShow">
+		<button type="submit" ng-click="save()" class="btn-primary btn-sm">Save</button>
+		<button ng-click="cancel()" ng-disabled="cancelDisabled=false"
+			class="btn-warning btn-sm">Cancel</button>
+	</div>
+</form>

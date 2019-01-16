@@ -1,0 +1,35 @@
+<div class="modal-header">
+	<h3>Delete Book</h3>
+</div>
+<div class="modal-body">
+	<div class="tableContainer">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>You are about to delete a book!</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<p>Do you really want to delete book {{bookName}} of
+							{{author}} ?
+						<p />
+					</td>
+				</tr>
+				<tr ng-show="spinnerModalShow" align="center">
+					<td><img
+						src="https://loading.io/spinners/book/index.flip-book-loader.svg"
+						class="ajax-loader" /></td>
+				</tr>
+				<tr ng-show="errorShow" align="center">
+					<th>Error!</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="modal-footer" ng-hide="spinnerModalShow">
+	<button type="submit" ng-click="yes()" class="btn-danger btn-sm ">Delete</button>
+	<button ng-click="no()" class="btn-sm">Cancel</button>
+</div>
