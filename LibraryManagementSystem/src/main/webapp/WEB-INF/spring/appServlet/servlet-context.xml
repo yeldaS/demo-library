@@ -58,12 +58,13 @@
 		<beans:constructor-arg name="mongoClient"
 			ref="mongo" />
 		<beans:constructor-arg name="databaseName"
-			value="demo_library" />
+			value="heroku_rwsk36dx" />
 	</beans:bean>
 	<!-- Factory bean that creates the MongoDB instance -->
 	<beans:bean id="mongo"
 		class="org.springframework.data.mongodb.core.MongoClientFactoryBean">
-		<beans:property name="host" value="localhost" />
+		<beans:property name="host" value="ds157844.mlab.com" />
+		<beans:property name="port" value="57844" />
 	</beans:bean>
 
 	<beans:bean
