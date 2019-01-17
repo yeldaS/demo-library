@@ -9,7 +9,8 @@ libraryApp.factory('BookService', [
 		'$http',
 		'$q',
 		function($http, $q) {
-			var REST_SERVICE_URI = 'http://localhost:8080/library/books';
+			// var REST_SERVICE_URI = 'http://localhost:8080/library/books';
+			var REST_SERVICE_URI = '/books';
 
 			var factory = {
 				getAllBooks : getAllBooks,
