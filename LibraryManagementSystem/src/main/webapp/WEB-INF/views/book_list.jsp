@@ -10,10 +10,12 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link href="<c:url value='/resources/book-list.css' />" rel="stylesheet">
+<link rel="shotcut icon" href="https://png2.kisspng.com/sh/8a7e9c04f4aeb3743f95e53d20a5c0cb/L0KzQYi4UsAyN2RpTpGAYUK1QbfshPU2PGlrT5C7M0a2Q4W5VsE2OWM2UKcDM0e8Q4q5TwBvbz==/5a221fede548f7.2363342615121858379392.png">
 
-<script
-	src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit"
-	async defer></script>
+<!-- <script -->
+<!-- 	src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" -->
+<!-- 	async defer></script> -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body ng-app="libraryApp" class="ng-cloak"
@@ -72,7 +74,7 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	<script
-		src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
+		src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
 	<!-- 	<script -->
 	<!-- 		src=“https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit“ -->
 	<!-- 		async defer></script> -->

@@ -40,38 +40,47 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+	<!-- mongo A/B -->
+	<!-- A -->
 	<!-- Mongo DB Conf -->
-	<!-- <mongo:mongo-client host="localhost" port="27017" -->
-	<!-- id="mongoClient" /> -->
-	<!-- <mongo:db-factory dbname="demo_library" -->
-	<!-- mongo-ref="mongoClient" id="mongoDbFactory" /> -->
+	<mongo:mongo-client host="ds259144.mlab.com"
+		port="59144" credentials="yeldaS:library1@demo_library"
+		id="mongoClient" />
+
+	<mongo:db-factory dbname="demo_library"
+		mongo-ref="mongoClient" id="mongoDbFactory" />
+	<!-- <mongo:db-factory id="mongoDbFactory" -->
+	<!-- client-uri="mongodb://yeldaS:library1@ds259144.mlab.com:59144/demo_library" 
+		/> -->
 
 	<!-- MongoTemplate for connecting and quering the documents in the database -->
-	<!-- <beans:bean id="mongoTemplate" -->
-	<!-- class="org.springframework.data.mongodb.core.MongoTemplate"> -->
-	<!-- <beans:constructor-arg name="mongoDbFactory" -->
-	<!-- ref="mongoDbFactory" /> -->
-	<!-- </beans:bean> -->
-
 	<beans:bean id="mongoTemplate"
 		class="org.springframework.data.mongodb.core.MongoTemplate">
-		<beans:constructor-arg name="mongoClient"
-			ref="mongo" />
-		<beans:constructor-arg name="databaseName"
-			value="demo_library" />
+		<beans:constructor-arg name="mongoDbFactory"
+			ref="mongoDbFactory" />
 	</beans:bean>
+
+
+	<!-- B -->
+	<!-- <beans:bean id="mongoTemplate" -->
+	<!-- class="org.springframework.data.mongodb.core.MongoTemplate"> -->
+	<!-- <beans:constructor-arg name="mongoClient" -->
+	<!-- ref="mongo" /> -->
+	<!-- <beans:constructor-arg name="databaseName" -->
+	<!-- value="demo_library" /> -->
+	<!-- </beans:bean> -->
+
 	<!-- Factory bean that creates the MongoDB instance -->
-	<beans:bean id="mongo"
-		class="org.springframework.data.mongodb.core.MongoClientFactoryBean">
-		<beans:property name="host" value="ds259144.mlab.com" />
-		<beans:property name="port" value="59144" />
-	</beans:bean>
+	<!-- <beans:bean id="mongo" -->
+	<!-- class="org.springframework.data.mongodb.core.MongoClientFactoryBean"> -->
+	<!-- <beans:property name="host" value="ds259144.mlab.com" /> -->
+	<!-- <beans:property name="port" value="59144" /> -->
+	<!-- </beans:bean> -->
 
 	<beans:bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<context:component-scan
 		base-package="com.demo.library">
 	</context:component-scan>
-
 
 </beans:beans>
