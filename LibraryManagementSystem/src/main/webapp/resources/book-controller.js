@@ -21,17 +21,34 @@ libraryApp.controller('BookController', [ '$scope', '$modal', '$timeout',
 			self.edit = edit;
 			self.reset = reset;
 
-			getAllBooks();
+			self.pageNo = '1';
+			self.nPerPage = '2';
+			self.maxSize = '5';
 
-			function getAllBooks() {
+			getBooksPerPage(self.pageNo, self.nPerPage);
+
+			function getBooksPerPage(pageNo, nPerPage) {
 				$scope.spinnerShow = true;
-				BookService.getAllBooks().then(function(data) {
-					self.books = data;
-					$scope.spinnerShow = false;
-				}, function(errResponse) {
-					console.error('Error while getting Books');
-					$scope.spinnerShow = false;
-				});
+
+				BookService.getAllBooksPageable(pageNo, nPerPage).then(
+						function(data) {
+							self.books = data.content;
+							$scope.spinnerShow = false;
+							$scope.pagination = {
+								currentPage : data.pageable.pageNo,
+								nPerPage : nPerPage,
+								totalElements : data.totalElements,
+								maxSize : self.maxSize
+							// number of buttons for pageNo
+							};
+						}, function(errResponse) {
+							console.error('Error while getting Books');
+							$scope.spinnerShow = false;
+						});
+			}
+
+			$scope.pageChanged = function(page) {
+				getBooksPerPage(page, self.nPerPage);
 			}
 
 			function add() {
@@ -91,7 +108,7 @@ libraryApp.controller('BookController', [ '$scope', '$modal', '$timeout',
 
 				modalInstance.result.then(function(bookModal) {
 					self.book = bookModal;
-					getAllBooks();
+					getBooksPerPage(self.pageNo, self.nPerPage);
 				}, function() {
 					console.log('Modal dismissed at: ' + new Date());
 				});
@@ -117,7 +134,7 @@ libraryApp.controller('BookController', [ '$scope', '$modal', '$timeout',
 				});
 
 				modalInstance.result.then(function() {
-					getAllBooks();
+					getBooksPerPage(self.pageNo, self.nPerPage);
 				}, function() {
 					console.log('Modal dismissed at: ' + new Date());
 				});

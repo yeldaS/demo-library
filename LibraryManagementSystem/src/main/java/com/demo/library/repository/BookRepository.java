@@ -3,6 +3,10 @@ package com.demo.library.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -18,8 +22,12 @@ public class BookRepository implements IBookRepository {
 	MongoTemplate mongoTemplate;
 
 	@Override
-	public List<Book> findAllBooks() {
-		return mongoTemplate.findAll(Book.class);
+	public Page<Book> findAllDeletedFalsePerPage(int pageNo, int nPerPage) {
+		Pageable pageable = PageRequest.of(pageNo - 1, nPerPage, Sort.by(Sort.Direction.ASC, "bookName"));
+		Query query = new Query().addCriteria(Criteria.where("deleted").is(false));
+		return new PageImpl<Book>(mongoTemplate.find(query.with(pageable), Book.class), pageable,
+				mongoTemplate.count(query, Book.class));
+		// return mongoTemplate.findAll(Book.class);
 	}
 
 	@Override

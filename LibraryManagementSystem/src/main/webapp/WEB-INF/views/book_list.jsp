@@ -10,7 +10,8 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 <link href="<c:url value='/resources/book-list.css' />" rel="stylesheet">
-<link rel="shotcut icon" href="https://png2.kisspng.com/sh/8a7e9c04f4aeb3743f95e53d20a5c0cb/L0KzQYi4UsAyN2RpTpGAYUK1QbfshPU2PGlrT5C7M0a2Q4W5VsE2OWM2UKcDM0e8Q4q5TwBvbz==/5a221fede548f7.2363342615121858379392.png">
+<link rel="shotcut icon"
+	href="https://png2.kisspng.com/sh/8a7e9c04f4aeb3743f95e53d20a5c0cb/L0KzQYi4UsAyN2RpTpGAYUK1QbfshPU2PGlrT5C7M0a2Q4W5VsE2OWM2UKcDM0e8Q4q5TwBvbz==/5a221fede548f7.2363342615121858379392.png">
 
 <!-- <script -->
 <!-- 	src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" -->
@@ -68,6 +69,12 @@
 					</tr>
 				</tbody>
 			</table>
+			<div>
+				<pagination ng-model="pagination.pageNo"
+					total-items="pagination.totalElements"
+					items-per-page="pagination.nPerPage" max-size="pagination.maxSize"
+					boundary-links="true" on-select-page="pageChanged(page)"></pagination>
+			</div>
 		</div>
 	</div>
 	</div>

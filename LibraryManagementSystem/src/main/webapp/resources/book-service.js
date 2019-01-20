@@ -13,6 +13,7 @@ libraryApp.factory('BookService', [
 			var REST_SERVICE_URI = '/books';
 
 			var factory = {
+				getAllBooksPageable : getAllBooksPageable,
 				getAllBooks : getAllBooks,
 				addBook : addBook,
 				updateBook : updateBook,
@@ -20,6 +21,25 @@ libraryApp.factory('BookService', [
 			};
 
 			return factory;
+
+			function getAllBooksPageable(pageNo, nPerPage) {
+				var deferred = $q.defer();
+				$http.get(REST_SERVICE_URI + '/get-all-books-pageable', {
+					params : {
+						pageNo : pageNo,
+						nPerPage : nPerPage
+					}
+				}).then(function(response) {
+					deferred.resolve(response.data);
+					return response.data;
+					console.log('get all books successed');
+				}, function(errResponse) {
+					return $q.reject(errResponse);
+					console.error('Error while getting Books');
+					deferred.reject(errResponse);
+				});
+				return deferred.promise;
+			}
 
 			function getAllBooks() {
 				var deferred = $q.defer();
