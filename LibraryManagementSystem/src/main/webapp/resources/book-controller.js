@@ -22,7 +22,7 @@ libraryApp.controller('BookController', [ '$scope', '$modal', '$timeout',
 			self.reset = reset;
 
 			self.pageNo = '1';
-			self.nPerPage = '2';
+			self.nPerPage = '5';
 			self.maxSize = '5';
 
 			getBooksPerPage(self.pageNo, self.nPerPage);
